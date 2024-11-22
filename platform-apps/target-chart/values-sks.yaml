@@ -1,16 +1,16 @@
 default:
   valueFiles:
-  - values-metalstack.yaml
+  - values-sks.yaml
 
 applications:
 
   - name: cert-manager
     annotations:
       argocd.argoproj.io/sync-wave: "-3"
-
-  - name: ingress-nginx
-    annotations:
-      argocd.argoproj.io/sync-wave: "-2"
+# temp disabled since this is a separate ingress https://kubernetes.github.io/ingress-nginx/deploy/#exoscale
+#  - name: ingress-nginx
+#    annotations:
+#      argocd.argoproj.io/sync-wave: "-2"
 
   - name: external-dns
     annotations:
