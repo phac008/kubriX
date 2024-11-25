@@ -35,7 +35,7 @@ grafana:
     type: sts
     accessModes:
       - ReadWriteOnce
-    size: 1Gi
+    size: 10Gi
     finalizers:
       - kubernetes.io/pvc-protection
 

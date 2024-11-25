@@ -30,9 +30,16 @@ mimir:
         cpu: 5
         memory: 6Gi
     persistentVolume:
-      size: 5Gi
-
-
+      size: 10Gi
+  alertmanager:
+    persistentVolume:
+      size: 10Gi
+  compactor:
+    persistentVolume:
+      size: 10Gi
+  store_gateway:
+    persistentVolume:
+      size: 10Gi
   minio:
     persistence:
       size: 10Gi
