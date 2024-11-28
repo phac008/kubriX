@@ -1,0 +1,31 @@
+vui:
+  global:
+    veleroNamespace: velero
+    kubernetesClusterDomain: cluster.local
+    clusterName: "localdemo"
+
+  apiConfig:
+    apiEnableDocumentation: "1"
+    k8SInClusterMode: "True"
+    origins1: 'https://velero-ui.suxess.demo-peaknetworks.com'
+    veleroCliVersion: v1.14.0
+    existingSecret: velero-ui-credential
+
+  uiIngress:
+    enabled: true
+    host: velero-ui.suxess.demo-peaknetworks.com
+    ingressClassName: ""
+    metadata:
+      annotations:
+    spec:
+      tls:
+        - secretName: velero-ui-server-tls
+          hosts:
+            - velero-ui.suxess.demo-peaknetworks.com
+  
+  uiNp: # NodePort
+    enabled: false
+    ip: ""
+    apiPort: "30001"
+    uiPort: "30002"
+
