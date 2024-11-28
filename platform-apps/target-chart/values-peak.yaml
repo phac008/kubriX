@@ -6,7 +6,7 @@ applications:
 
   - name: cert-manager
     annotations:
-      argocd.argoproj.io/sync-wave: "-3"
+      argocd.argoproj.io/sync-wave: "-10"
 
   - name: ingress-nginx
     annotations:
@@ -14,11 +14,11 @@ applications:
 
   - name: external-dns
     annotations:
-      argocd.argoproj.io/sync-wave: "-2" 
+      argocd.argoproj.io/sync-wave: "-2"
 
   - name: argocd
     annotations:
-      argocd.argoproj.io/sync-wave: "-2"
+      argocd.argoproj.io/sync-wave: "-9"
 
   - name: k8s-monitoring
     annotations:
@@ -29,7 +29,7 @@ applications:
 
   - name: crossplane
     annotations:
-      argocd.argoproj.io/sync-wave: "-1"
+      argocd.argoproj.io/sync-wave: "-8"
 
   - name: external-secrets
     annotations:
@@ -44,12 +44,21 @@ applications:
       skipCrds: true
     syncOptions:
       - ServerSideApply=true
-      
+
   - name: komoplane
 
   - name: kubecost
 
+  - name: k8s-monitoring
+    annotations:
+      argocd.argoproj.io/compare-options: ServerSideDiff=true
+      argocd.argoproj.io/sync-wave: "-6"
+    syncOptions:
+      - ServerSideApply=true
+
   - name: keycloak
+    annotations:
+      argocd.argoproj.io/sync-wave: "-8"
 
   - name: team-onboarding
     destinationNamespaceOverwrite: argocd
@@ -78,7 +87,7 @@ applications:
   - name: kyverno
     syncOptions:
       - ServerSideApply=true
-      
+
   #- name: kubevirt-manager
 
   #- name: kubevirt
@@ -87,7 +96,8 @@ applications:
 
   - name: vault
     annotations:
-      argocd.argoproj.io/sync-wave: "-5"
+      argocd.argoproj.io/sync-wave: "-7"
+
   - name: velero
 
   - name: velero-ui
