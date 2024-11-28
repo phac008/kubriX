@@ -1,6 +1,6 @@
 default:
   valueFiles:
-  - values-sks.yaml
+  - values-peak.yaml
 
 applications:
 
@@ -10,7 +10,7 @@ applications:
 
   - name: ingress-nginx
     annotations:
-      argocd.argoproj.io/sync-wave: "-2"
+      argocd.argoproj.io/sync-wave: "-10"
 
   - name: external-dns
     annotations:
