@@ -14,7 +14,7 @@ vui:
   uiIngress:
     enabled: true
     host: velero-ui.suxess.demo-peaknetworks.com
-    ingressClassName: ""
+    ingressClassName: "nginx"
     metadata:
       annotations:
     spec:

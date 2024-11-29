@@ -71,7 +71,7 @@ komoplane:
 
   ingress:
     enabled: true
-    className: ""
+    className: "nginx"
     annotations: { }
     labels: { }
     hosts:
