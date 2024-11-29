@@ -1,9 +1,9 @@
 eso:
-  providerUrl: "http://sx-vault-active.vault.svc.cluster.local:8200"
+  providerUrl: "https://vault.suxess.demo-peaknetworks.com/"
   backendName: vault-backend
   secretStore: sx-cnp-oss-kv
   # oidc config
-  oidcDiscoveryUrl: https://keycloak.suxess.demo-peaknetworks.com/realms/sx-cnp-oss
+  oidcDiscoveryUrl: "https://keycloak.suxess.demo-peaknetworks.com/realms/sx-cnp-oss"
   callbackUri: "https://vault.suxess.demo-peaknetworks.com"
 
   # Copyright (c) HashiCorp, Inc.
@@ -14,6 +14,9 @@ vault:
   server:
     ingress:
       enabled: true
+      ingressClassName: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-staging
       hosts:
         - host: vault.suxess.demo-peaknetworks.com
           paths: []
@@ -136,34 +139,6 @@ vault:
             - ALL
           privileged: false
           runAsNonRoot: true
-      - name: audit-cleanup
-        image: hashicorp/vault:1.17.2
-        env: 
-          - name: VAULT_ADDR
-            valueFrom:
-              secretKeyRef:
-                name: sx-vault-env-vars
-                key: VAULT_ADDR  
-        command: 
-        - /bin/sh
-        - -c
-        - | 
-            while true; do
-              echo "waiting for tomorrow :-)"
-              sleep 86400  # Runs daily, after 1 day
-              echo "Truncating log file..."
-              truncate -s 0 /vault/audit/audit.log
-            done
-        volumeMounts:
-          - name: vault-root-token
-            mountPath: /vault-root-token  
-        securityContext:
-          allowPrivilegeEscalation: false
-          capabilities:
-            drop:
-            - ALL
-          privileged: false
-          runAsNonRoot: true
       - name: vault-initializer
         image: hashicorp/vault:1.17.2
         env: 
@@ -195,13 +170,6 @@ vault:
                   vault write auth/kubernetes/role/crossplane bound_service_account_names="*" bound_service_account_namespaces=crossplane policies=crossplane ttl=24h        
 
                 else 
-
-                # due to #405
-                  if [ ! $(vault read auth/oidc/config) ]; then
-                    vault auth enable oidc
-                    vault write auth/oidc/config oidc_discovery_url="https://keycloak.suxess.demo-peaknetworks.com/realms/sx-cnp-oss" oidc_client_id="vault" oidc_client_secret="demosecret" default_role="default" oidc_discovery_ca_pem=@/vault/userconfig/vault-ca/ca.crt
-                  fi
-
                   # workaround due to #422
                   if [ ! $(vault list identity/group-alias/id) ]; then
                     echo vault admins group configured, just updating group aliases
@@ -235,9 +203,6 @@ vault:
             mountPath: /vault-root-token
           - name: plugins
             mountPath: /usr/local/libexec/vault
-          - mountPath: /vault/userconfig/vault-ca
-            name: vault-ca-cert
-            readOnly: true 
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:
@@ -245,8 +210,6 @@ vault:
             - ALL
           privileged: false
           runAsNonRoot: true
-    extraEnvironmentVars:
-      VAULT_CACERT: /vault/userconfig/vault-ca/ca.crt
     volumes:
       - name: plugins
         emptyDir: {}
@@ -254,22 +217,16 @@ vault:
         secret:
           secretName: vault-init
           optional: true 
-      - name: vault-ca-cert
-        secret:
-          defaultMode: 420
-          secretName: ca-cert
+
     volumeMounts:
       - mountPath: /usr/local/libexec/vault
         name: plugins
         readOnly: false 
-      - mountPath: /vault/userconfig/vault-ca
-        name: vault-ca-cert
-        readOnly: true 
     dataStorage:
       size: 1Gi
     auditStorage:
       enabled: true
-      size: 1Gi
+      size: 5Gi
     affinity: {}
     ha:
       enabled: true
