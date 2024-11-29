@@ -1,9 +1,10 @@
 ingress-nginx:
   controller:
     watchIngressWithoutClass: true
+    terminationGracePeriodSeconds: 0
     publishService:
       enabled: false
-#    extraArgs:
-#      publish-status-address: localhost
+    extraArgs:
+      publish-status-address: localhost
     service:
       type: NodePort
