@@ -8,9 +8,9 @@ applications:
     annotations:
       argocd.argoproj.io/sync-wave: "-10"
 
-#  - name: ingress-nginx
-#    annotations:
-#      argocd.argoproj.io/sync-wave: "-10"
+  - name: ingress-nginx
+    annotations:
+      argocd.argoproj.io/sync-wave: "-10"
 
   - name: external-dns
     annotations:
