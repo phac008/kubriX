@@ -2,6 +2,8 @@ ingress-nginx:
   controller:
     watchIngressWithoutClass: true
     terminationGracePeriodSeconds: 0
+    hostPort:
+      enabled: true
     publishService:
       enabled: false
     extraArgs:
