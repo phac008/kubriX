@@ -1,0 +1,12 @@
+ingress-nginx:
+  controller:
+    kind: DaemonSet
+    service:
+      annotations:
+        service.beta.kubernetes.io/exoscale-loadbalancer-description: NGINX Ingress Controller load balancer
+        service.beta.kubernetes.io/exoscale-loadbalancer-service-healthcheck-interval: 10s
+        service.beta.kubernetes.io/exoscale-loadbalancer-service-healthcheck-mode: http
+        service.beta.kubernetes.io/exoscale-loadbalancer-service-healthcheck-retries: "1"
+        service.beta.kubernetes.io/exoscale-loadbalancer-service-healthcheck-timeout: 3s
+        service.beta.kubernetes.io/exoscale-loadbalancer-service-healthcheck-uri: /
+        service.beta.kubernetes.io/exoscale-loadbalancer-service-strategy: source-hash
