@@ -32,7 +32,7 @@ falco:
           cert-manager.io/cluster-issuer: letsencrypt-staging
         ingressClassName: nginx
         hosts:
-          - host: falco.suxess.demo-peaknetworks.com]
+          - host: falco.suxess.demo-peaknetworks.com
             paths:
               - path: /
                 pathType: Prefix
