@@ -29,10 +29,7 @@ falco:
       ingress:
         enabled: true
         annotations:
-          cert.gardener.cloud/purpose: managed
-          dns.gardener.cloud/class: garden
-          dns.gardener.cloud/dnsnames: falco.suxess.demo-peaknetworks.com]
-          dns.gardener.cloud/ttl: "180"          
+          cert-manager.io/cluster-issuer: letsencrypt-staging
         ingressClassName: nginx
         hosts:
           - host: falco.suxess.demo-peaknetworks.com]
@@ -42,7 +39,7 @@ falco:
         tls:
             - secretName: falco-server-tls
               hosts:
-                - falco.suxess.demo-peaknetworks.com]
+                - falco.suxess.demo-peaknetworks.com
     replicaCount: 1
     serviceMonitor:
       enabled: true
