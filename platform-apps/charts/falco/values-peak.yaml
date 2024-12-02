@@ -4,10 +4,25 @@ falco:
   tty: true
   driver:
     enabled: true
-    kind: kmod
+    kind: ebpf
     #kind: modern-bpf
     kubernetes:
       enabled: true
+  mounts:
+    Volumes:
+      - name: lib-modules
+        hostPath:
+          path: /lib/modules
+      - name: usr-src
+        hostPath:
+          path: /usr/src
+    VolumeMounts:
+      - name: lib-modules
+        mountPath: /host/lib/modules
+        readOnly: true
+      - name: usr-src
+        mountPath: /host/usr/src
+        readOnly: true
 
   falco:
     grpc:
