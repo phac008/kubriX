@@ -1,17 +1,16 @@
 falco:
   scc:
     create: false
-
   tty: true
-  containerSecurityContext:
-    privileged: true
-
   driver:
     enabled: true
     kind: ebpf
     #kind: modern-bpf
     kubernetes:
       enabled: true
+    loader:
+      initContainer:
+        privileged: true
 
   falco:
     grpc:
