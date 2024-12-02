@@ -4,7 +4,7 @@ falco:
   tty: true
   driver:
     enabled: true
-    kind: ebpf
+    kind: kmod
     #kind: modern-bpf
     kubernetes:
       enabled: true
