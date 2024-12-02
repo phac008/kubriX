@@ -3,6 +3,8 @@ falco:
     create: false
 
   tty: true
+  containerSecurityContext:
+    privileged: true
 
   driver:
     enabled: true
