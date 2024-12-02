@@ -8,10 +8,6 @@ falco:
     #kind: modern-bpf
     kubernetes:
       enabled: true
-    loader:
-      initContainer:
-        securityContext:
-          privileged: true
 
   falco:
     grpc:
