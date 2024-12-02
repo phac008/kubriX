@@ -10,7 +10,8 @@ falco:
       enabled: true
     loader:
       initContainer:
-        privileged: true
+        securityContext:
+          privileged: true
 
   falco:
     grpc:
