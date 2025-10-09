@@ -28,6 +28,10 @@ applications:
   - name: metallb
     annotations:
       argocd.argoproj.io/sync-wave: "-9"
+    labels:
+      pod-security.kubernetes.io/enforce: privileged
+      pod-security.kubernetes.io/audit: privileged
+      pod-security.kubernetes.io/warn: privileged
 
   - name: external-secrets
     annotations:
