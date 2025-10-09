@@ -1,6 +1,7 @@
 default:
   valueFiles:
   - values-demo-stack.yaml
+  - values-demo-peak.yaml
 
 applications:
 
@@ -25,6 +26,10 @@ applications:
       argocd.argoproj.io/sync-wave: "-9"
 
   - name: argocd
+    annotations:
+      argocd.argoproj.io/sync-wave: "-9"
+
+  - name: metallb
     annotations:
       argocd.argoproj.io/sync-wave: "-9"
 
