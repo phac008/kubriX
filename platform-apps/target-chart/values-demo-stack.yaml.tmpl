@@ -1,11 +1,19 @@
 default:
   valueFiles:
-  - values-demo-stack.yaml
   - values-demo-peak.yaml
+  - values-demo-stack.yaml
 
 applications:
 
   {{ if ne .kubriX.clusterType "kind" -}}
+  - name: metallb
+    annotations:
+      argocd.argoproj.io/sync-wave: "-12"
+    labels:
+      pod-security.kubernetes.io/enforce: privileged
+      pod-security.kubernetes.io/audit: privileged
+      pod-security.kubernetes.io/warn: privileged
+
   - name: ingress-nginx
     annotations:
       argocd.argoproj.io/sync-wave: "-11"
