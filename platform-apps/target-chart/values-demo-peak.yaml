@@ -93,10 +93,6 @@ applications:
     syncOptions:
       - ServerSideApply=true
 
-  - name: kubevirt-manager
-
-  - name: kubevirt
-
   - name: velero
 
   - name: velero-ui
