@@ -3,7 +3,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/external-dns-ionos-webhook/app</code></h3>
-<h4>Vulnerabilities (10)</h4>
+<h4>Vulnerabilities (8)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -63,20 +63,6 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-58189</td>
-        <td>HIGH</td>
-        <td>v1.23.3</td>
-        <td>1.24.8, 1.25.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61723</td>
-        <td>HIGH</td>
-        <td>v1.23.3</td>
-        <td>1.24.8, 1.25.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
         <td>CVE-2025-61724</td>
         <td>HIGH</td>
         <td>v1.23.3</td>
@@ -89,7 +75,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/external-dns</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (6)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -129,20 +115,6 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2025-58188</td>
-        <td>HIGH</td>
-        <td>v1.24.6</td>
-        <td>1.24.8, 1.25.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-58189</td>
-        <td>HIGH</td>
-        <td>v1.24.6</td>
-        <td>1.24.8, 1.25.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61723</td>
         <td>HIGH</td>
         <td>v1.24.6</td>
         <td>1.24.8, 1.25.2</td>
